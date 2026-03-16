@@ -61,7 +61,7 @@ Here are the combined layers.
 
 ![alt text](<docs/images/Screenshot 2026-03-15 165120.png>)
 
-![alt text](<docs/images/Screenshot 2026-03-15 165138.png>)
+[alt text](<docs/images/Screenshot 2026-03-16 174439.png>)
 
 ![alt text](<docs/images/Screenshot 2026-03-15 165154.png>)
 
@@ -81,20 +81,18 @@ Here are the combined layers.
 
 This is not yet a full, canonical implementation of the Miryoku system.
 
-Missing features:
-- Most of the 'additional features' listed here: https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features
-- Reboot, tap and alt layers because I don't need/want them.
-- I hope to implement one day, it's a skill issue for now, I need to get better at Javelin-script:
-  - Layer and Opposite lock.  
-  - Mouse wheel movenments
+Miryoku 'additional features':
+- Reboot, tap and alt layers: I don't need/want them. PRs welcome.
+- Layer and Opposite lock.  Hopefully soon, working to upskill on Javelin-Script.
+- Mouse wheel movements: partially implemented, to be improved soon.
 
-New features:
+Jarne specific features:
 - The Miryoku model doesn't map exactly to the Jarne: for the RGB controls, bluetooth and FIDO. These have been added in a hopefully consistent manner.
 
-General:
+General musings:
 - The outer pinkies could be used for a lot more
-- Maybe add a layer switch to steno inner thumb
-- My personal build will probably adopt a Taipo or Artsey style layer for mouse work, instead of current 'button' layer.
+- Could maybe add a layer switch to steno inner thumb
+- Potential to work on a Taipo or Artsey style layer for mouse work, instead of current 'button' layer.
 
 ## License
 

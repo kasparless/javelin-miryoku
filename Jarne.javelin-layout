@@ -1057,7 +1057,7 @@
 			"id": 80342824,
 			"name": "Nav",
 			"keys": [
-				null,
+				[],
 				null,
 				null,
 				null,
@@ -1254,10 +1254,7 @@
 						"d": {
 							"t": "m",
 							"g": 1,
-							"k": "f10",
-							"km": [
-								"leftShift"
-							]
+							"k": "insert"
 						}
 					}
 				],
@@ -1591,53 +1588,85 @@
 				null,
 				[
 					{
-						"t": "s",
+						"t": "p",
 						"d": {
-							"s": "//Placeholder \\n Mouse Wheel \\n Left\n",
-							"q": "",
-							"p": "",
-							"t": "",
-							"r": ""
+							"a": {
+								"t": "s",
+								"script": "// MouseWheel\\nLeft\nmouseWheelLeftPressed();"
+							}
+						}
+					},
+					{
+						"t": "r",
+						"d": {
+							"a": {
+								"t": "s",
+								"script": "//\nmouseWheelLeftReleased();"
+							}
 						}
 					}
 				],
 				[
 					{
-						"t": "s",
+						"t": "p",
 						"d": {
-							"s": "//Placeholder \\n Mouse Wheel \\n Down\n",
-							"q": "",
-							"p": "",
-							"t": "",
-							"r": ""
+							"a": {
+								"t": "s",
+								"script": "// MouseWheel\\nDown\nmouseWheelDownPressed();"
+							}
+						}
+					},
+					{
+						"t": "r",
+						"d": {
+							"a": {
+								"t": "s",
+								"script": "// \nmouseWheelDownReleased();"
+							}
 						}
 					}
 				],
 				[
 					{
-						"t": "s",
+						"t": "p",
 						"d": {
-							"s": "//Placeholder \\n Mouse Wheel \\n Up",
-							"q": "",
-							"p": "",
-							"t": "",
-							"r": ""
+							"a": {
+								"t": "s",
+								"script": "// MouseWheel\\nUp\nmouseWheelUpPressed();"
+							}
+						}
+					},
+					{
+						"t": "r",
+						"d": {
+							"a": {
+								"t": "s",
+								"script": "//\nmouseWheelUpReleased();"
+							}
 						}
 					}
 				],
 				[
 					{
-						"t": "s",
+						"t": "p",
 						"d": {
-							"s": "//Placeholder \\n Mouse Wheel \\n Right\n",
-							"q": "",
-							"p": "",
-							"t": "",
-							"r": ""
+							"a": {
+								"t": "s",
+								"script": "// MouseWheel\\nRight\nmouseWheelRightPressed();"
+							}
+						}
+					},
+					{
+						"t": "r",
+						"d": {
+							"a": {
+								"t": "s",
+								"script": "// \nmouseWheelRightReleased();"
+							}
 						}
 					}
 				],
-				null,
+				[],
 				null,
 				null,
 				[
@@ -1684,7 +1713,7 @@
 			],
 			"scripts": {},
 			"user_scripts": {
-				"mousemov": "// Copy-paste the contents of this script into a layer's User Scripts\n// After that, clicking on a key will show mouse movement options.\nvar vx;\nvar vy;\n\nvar mouseMask; // 0 = up, 1 = down, 2 = left, 3 = right\n\n// Scaled up *10\nconst MOUSE_MAX_VELOCITY = 2000; // 200\nconst MOUSE_ACCELERATION = 25;   // 2.5 units/tick\n\nfunc mouseUpPressed() {\n  mousePressed(1);\n}\n\nfunc mouseDownPressed() {\n  mousePressed(2);\n}\n\nfunc mouseLeftPressed() {\n  mousePressed(4);\n}\n\nfunc mouseRightPressed() {\n  mousePressed(8);\n}\n\nfunc mouseUpReleased() {\n  vy = 0;\n  mouseReleased(1);\n}\n\nfunc mouseDownReleased() {\n  vy = 0;\n  mouseReleased(2);\n}\n\nfunc mouseLeftReleased() {\n  vx = 0;\n  mouseReleased(4);\n}\n\nfunc mouseRightReleased() {\n  vx = 0;\n  mouseReleased(8);\n}\n\nfunc mousePressed(mask) {\n  mouseMask = mouseMask | mask;\n  startTimer(@updateMouse, 25, 1, @updateMouse);\n  updateMouse();\n}\n\nfunc mouseReleased(mask) {\n  mouseMask = mouseMask & ~mask;\n  if (mouseMask == 0) {\n    stopTimer(@updateMouse);\n  }\n}\n\nfunc mouseReleaseAll() {\n  mouseMask = 0;\n  stopTimer(@updateMouse);\n}\n\nfunc updateMouse() {\n  var upDown = mouseMask & 3;\n  if (upDown == 0 || upDown == 3) {\n    vy = 0;\n  } else if(upDown == 1) {\n    vy = vy - MOUSE_ACCELERATION;\n    if (vy < -MOUSE_MAX_VELOCITY) vy = -MOUSE_MAX_VELOCITY;\n  } else {\n    vy = vy + MOUSE_ACCELERATION;\n    if (vy > MOUSE_MAX_VELOCITY) vy = MOUSE_MAX_VELOCITY;\n  }\n\n  var leftRight = mouseMask >> 2;\n  if (leftRight == 0 || leftRight == 3) {\n    vx = 0;\n  } else if(leftRight == 1) {\n    vx = vx - MOUSE_ACCELERATION;\n    if (vx < -MOUSE_MAX_VELOCITY) vx = -MOUSE_MAX_VELOCITY;\n  } else {\n    vx = vx + MOUSE_ACCELERATION;\n    if (vx > MOUSE_MAX_VELOCITY) vx = MOUSE_MAX_VELOCITY;\n  }\n\n  moveMouse(vx/10, vy/10);\n}\n\n// #prefab Mouse:Up [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// Mouse\\\\nUp\\nmouseUpPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"//\\nmouseUpReleased();\"}}}]\n// #prefab Mouse:Down [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// Mouse\\\\nDown\\nmouseDownPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// \\nmouseDownReleased();\"}}}]\n// #prefab Mouse:Left [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// Mouse\\\\nLeft\\nmouseLeftPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"//\\nmouseLeftReleased();\"}}}]\n// #prefab Mouse:Right [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// Mouse\\\\nRight\\nmouseRightPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// \\nmouseRightReleased();\"}}}]\n"
+				"mousemov": "// Copy-paste the contents of this script into a layer's User Scripts\n// After that, clicking on a key will show mouse movement options.\nvar vx;\nvar vy;\n\nconst dxWheel = 1;\nconst dyWheel = 1;\n\nvar mouseMask; // 0 = up, 1 = down, 2 = left, 3 = right\n\n// Scaled up *10\nconst MOUSE_MAX_VELOCITY = 2000; // 200\nconst MOUSE_ACCELERATION = 25;   // 2.5 units/tick\n\nfunc mouseUpPressed() {\n  mousePressed(1);\n}\n\nfunc mouseDownPressed() {\n  mousePressed(2);\n}\n\nfunc mouseLeftPressed() {\n  mousePressed(4);\n}\n\nfunc mouseRightPressed() {\n  mousePressed(8);\n}\n\nfunc mouseUpReleased() {\n  vy = 0;\n  mouseReleased(1);\n}\n\nfunc mouseDownReleased() {\n  vy = 0;\n  mouseReleased(2);\n}\n\nfunc mouseLeftReleased() {\n  vx = 0;\n  mouseReleased(4);\n}\n\nfunc mouseRightReleased() {\n  vx = 0;\n  mouseReleased(8);\n}\n\nfunc mouseWheelUpPressed() {\n  vWheelMouse(-1*dyWheel);\n}\n\nfunc mouseWheelDownPressed() {\n  vWheelMouse(dyWheel);\n}\n\nfunc mouseWheelLeftPressed() {\n  hWheelMouse(-1*dxWheel);\n}\n\nfunc mouseWheelRightPressed() {\n  hWheelMouse(dxWheel);\n}\n\nfunc mouseWheelUpReleased() {\n}\n\nfunc mouseWheelDownReleased() {\n}\n\nfunc mouseWheelLeftReleased() {\n}\n\nfunc mouseWheelRightReleased() {\n}\n\nfunc mousePressed(mask) {\n  mouseMask = mouseMask | mask;\n  startTimer(@updateMouse, 25, 1, @updateMouse);\n  updateMouse();\n}\n\nfunc mouseReleased(mask) {\n  mouseMask = mouseMask & ~mask;\n  if (mouseMask == 0) {\n    stopTimer(@updateMouse);\n  }\n}\n\nfunc mouseReleaseAll() {\n  mouseMask = 0;\n  stopTimer(@updateMouse);\n}\n\nfunc updateMouse() {\n  var upDown = mouseMask & 3;\n  if (upDown == 0 || upDown == 3) {\n    vy = 0;\n  } else if(upDown == 1) {\n    vy = vy - MOUSE_ACCELERATION;\n    if (vy < -MOUSE_MAX_VELOCITY) vy = -MOUSE_MAX_VELOCITY;\n  } else {\n    vy = vy + MOUSE_ACCELERATION;\n    if (vy > MOUSE_MAX_VELOCITY) vy = MOUSE_MAX_VELOCITY;\n  }\n\n  var leftRight = mouseMask >> 2;\n  if (leftRight == 0 || leftRight == 3) {\n    vx = 0;\n  } else if(leftRight == 1) {\n    vx = vx - MOUSE_ACCELERATION;\n    if (vx < -MOUSE_MAX_VELOCITY) vx = -MOUSE_MAX_VELOCITY;\n  } else {\n    vx = vx + MOUSE_ACCELERATION;\n    if (vx > MOUSE_MAX_VELOCITY) vx = MOUSE_MAX_VELOCITY;\n  }\n\n  moveMouse(vx/10, vy/10);\n}\n\n// #prefab Mouse:Up [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// Mouse\\\\nUp\\nmouseUpPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"//\\nmouseUpReleased();\"}}}]\n// #prefab Mouse:Down [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// Mouse\\\\nDown\\nmouseDownPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// \\nmouseDownReleased();\"}}}]\n// #prefab Mouse:Left [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// Mouse\\\\nLeft\\nmouseLeftPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"//\\nmouseLeftReleased();\"}}}]\n// #prefab Mouse:Right [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// Mouse\\\\nRight\\nmouseRightPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// \\nmouseRightReleased();\"}}}]\n// #prefab MouseWheel:Up [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// MouseWheel\\\\nUp\\nmouseWheelUpPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"//\\nmouseWheelUpReleased();\"}}}]\n// #prefab MouseWheel:Down [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// MouseWheel\\\\nDown\\nmouseWheelDownPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// \\nmouseWheelDownReleased();\"}}}]\n// #prefab MouseWheel:Left [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// MouseWheel\\\\nLeft\\nmouseWheelLeftPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"//\\nmouseWheelLeftReleased();\"}}}]\n// #prefab MouseWheel:Right [{\"t\":\"p\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// MouseWheel\\\\nRight\\nmouseWheelRightPressed();\"}}},{\"t\":\"r\",\"d\":{\"a\":{\"t\":\"s\",\"script\":\"// \\nmouseWheelRightReleased();\"}}}]\n"
 			},
 			"options": {},
 			"sequences": {}

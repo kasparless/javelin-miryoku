@@ -1,148 +1,120 @@
 
-// Manually generated from javelin-layout file
+// Generated from javelin-layout file
 // Global
 // Steno
 //
 // ,-------------------------------------------.        ,-------------------------------------------.
-// |        |  #3  |   T  |   P  |   H  |  *1  |        |  *2  |   F  |   P  |   L  |   T  |    D   |
+// |   Tab  |  S1  |   T  |   P  |   H  |  *1  |        |  *2  |   F  |   P  |   L  |   T  |    D   |
 // |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |  S2  |   K  |   W  |   R  |  *3  |        |  *4  |   R  |   B  |   G  |   S  |    Z   |
+// |Ctrl/Esc|  S2  |   K  |   W  |   R  |  *3  |        |  *4  |   R  |   B  |   G  |   S  |    Z   |
 // |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
 // | Alpha  |      |      |      |      |      |        |      |      |      |      |      |        |
 // `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
-//                           |      |   A  |   O  |  |   E  |   U  |  #2  |
+//                           | Cmd  |   A  |   O  |  |   E  |   U  |  #2  |
 //                           `--------------------'  `--------------------'
 //
-// * Tapping Alpha key will switch to Alphabetic mode -- Colemak-DH and the Miryoku system
+// * Tapping Alpha key will switch to Alphabetic mode -- QWERTY, Dvorak, Colemak, Workman
+// * Holding it down and pressing other buttons will cause the keyboard to return to steno mode when
+//   releasing it. This will also give access to the Symbols, Navigation and Function layers by
+//   pressing those keys on the Alphabetic layer.
+// * Command and Control activate a temporary qwerty layer
+
 //
-// Colemak-DH (Miryoku*)
+// QWERTY
 //
 // ,-------------------------------------------.        ,-------------------------------------------.
-// |        |   Q  |   W  |   F  |   P  |   B  |        |   J  |   L  |   U  |   Y  |  ' " |        |
+// |   Tab  |   Q  |   W  |   E  |   R  |   T  |        |   Y  |   U  |   I  |   O  |   P  |  Bksp  |
 // |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |A/Supr|R/Alt |S/Ctl |T/Shft|   G  |        |   M  |N/Shft|E/Ctl |I/Alt |O/Supr|        |
+// |Ctrl/Esc|   A  |   S  |   D  |   F  |   G  |        |   H  |   J  |   K  |   L  | ;  : |  '  "  |
 // |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |  Steno | Z/L7 |   X  |   C  |   D  |   V  |        |   K  |   H  | ,  < | .  > |/ ?/L7|        |
+// |Shf/Sten|   Z  |   X  |   C  |   V  |   B  |        |   N  |   M  | ,  < | .  > | /  ? | RShift |
 // `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
-//                           |Esc/L3| Sp/L1|Tab/L2|  |Ent/L5|Bsp/L4|Del/L6|
+//                           | Meta |  Alt |Nav/Sp|  | Space| Sym  |Fn/Ent|
 //                           `--------------------'  `--------------------'
 //
-// For keys marked with two options, tapping briefly will trigger the first option,
-// holding or pressing with other keys will use the second option (layer-mods).
-// L1 - Navigation
-// L2 - Mouse
-// L3 - Media/Bluetooth/Lights (and link to L8)
-// L4 - Numpad
-// L5 - Symbols
-// L6 - Function keys
-// L7 - Buttons (mouse assist)
-// L8 - FIDO, Steno mode
-// * This is not full canonical Miryoku, refer readme for discussion.
+// For keys marked with two options, holding or pressing with other keys will cause the first option
+// to be used, tapping briefly will trigger the second.
 //
-// Nav (L1)
+// Press left & right shift together to enable word caps.
+// Press left & right shift with alt to toggle on and off caps lock.
+
+//
+// Symbols
 //
 // ,-------------------------------------------.        ,-------------------------------------------.
-// |        |      |      |      |      |      |        | Redo | Paste| Cut  | Copy | Undo |        |
+// |    `   |  1   |  2   |  3   |  4   |  5   |        |   6  |  7   |  8   |  9   |  0   |   =    |
 // |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        | Supr | Alt  | Ctl  | Shft |      |        | Caps |  ←   |   ↓  |   ↑  |   →  |        |
+// |    ~   |  !   |  @   |  #   |  $   |  %   |        |   ^  |  &   |  *   |  (   |  )   |   +    |
 // |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |      |      |      |      |      |        | Ins  | Home | PgDn | PgUp |  End |        |
+// |    ?   |  \   |  |   |  -   |  [   |  {   |        |   }  |  ]   |  _   |  .   |  /   |  Magic |
 // `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
-//                           |      | Hold |      |  |  Ent | BkSp | Del  |
+//                           | Meta |  Alt |Ctl/Sp|  |      |      |      |
 //                           `--------------------'  `--------------------'
 //
-// Mouse (L2)
+// * Magic has a few different meanings:
+//   - By itself, it does nothing.
+//   - Following '-' or '=', it means '>'
+//   - Following '(' or '\', it means '"'
+//   - Following a '{' or '[', it means enter (newline)
+//   - Following a digit, it means ','
+//   - Following a comma or dot, it means space ' '
+
+//
+// Function
 //
 // ,-------------------------------------------.        ,-------------------------------------------.
-// |        |      |      |      |      |      |        | Redo | Paste| Cut  | Copy | Undo |        |
+// |        |  F9  | F10  | F11  | F12  |      |        |      |      |      |      |      |        |
 // |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        | Supr | Alt  | Ctl  | Shft |      |        |      |  Cr← | Cr↓  | Cr↑  | Cr→  |        |
+// |        |  F5  |  F6  |  F7  |  F8  |      |        |      | Shift| Ctrl |  Alt |  GUI |        |
 // |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |      |      |      |      |      |        |      |  Wh← | Wh↓  | Wh↑  | Wh→  |        |
+// |        |  F1  |  F2  |  F3  |  F4  |      |        |      |      |      |      |      |        |
 // `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
-//                           |      |      | Hold |  |  RBt | LBt  | MBt  |
+//                           |      |      |      |  |      |      |      |
 //                           `--------------------'  `--------------------'
+
 //
-// Mouse control keys: Cursor movement and wheel movement (wheel movement not implemented yet).
-//
-// Bluetooth, Media, Backlights (L3)
-//
-// ,-------------------------------------------.        ,-------------------------------------------.
-// |  USB L | BLE1 | BLE2 | BLE3 | BLE4 | USB R|        |      | Sat- |Brght-|Brght+| Sat+ |Disconn |
-// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |      |      |      |      |      |        |      | Prev | Vol- | Vol+ | Next |        |
-// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |      |      |      |      |      |        |      | BLE1 | BLE2 | BLE3 | BLE4 | Unpair |
-// `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
-//                           | Hold |  L8  |      |  | Stop | Play | Mute |
-//                           `--------------------'  `--------------------'
-//
-// Hold BLE for 3 seconds to pair.
-// Hold L8 after entering layer to switch to L8.
-// 
-// Numpad (L4)
+// Navigation/Media
 //
 // ,-------------------------------------------.        ,-------------------------------------------.
-// |        |  [   |  7   |  8   |  9   |  ]   |        |      |      |      |      |      |        |
+// |        |      |      |      |      | Bri+ |        | Vol+ | BkSp |   ↑  | Del  | PgUp |  Home  |
 // |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |  ;   |  4   |  5   |  6   |  =   |        |      | Shft | Ctl  | Alt  | Supr |        |
+// |        |  GUI |  Alt | Ctrl | Shift| Bri- |        | Vol- |  ←   |   ↓  |   →  | PgDn |   End  |
 // |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |  `   |  1   |  2   |  3   |  \   |        |      |      |      |      |      |        |
+// |        |      |      |      |      |      |        | Mute |      |      |      |      |        |
 // `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
-//                           |  .   |  0   |  -   |  |      | Hold |      |
-//                           `--------------------'  `--------------------'
-//
-// Symbols (L5)
-//
-// ,-------------------------------------------.        ,-------------------------------------------.
-// |        |  {   |  &   |  *   |  (   |  }   |        |      |      |      |      |      |        |
-// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |  :   |  $   |  %   |  ^   |  +   |        |      | Shft | Ctl  | Alt  | Supr |        |
-// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |  ~   |  !   |  @   |  #   |  |   |        |      |      |      |      |      |        |
-// `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
-//                           |  (  |  )   |  _   |  | Hold |       |      |
-//                           `--------------------'  `--------------------'
-//
-// Function keys (L6)
-//
-// ,-------------------------------------------.        ,-------------------------------------------.
-// |        |  F12 |  F7  |  F8  |  F9  | PrSc |        |      |      |      |      |      |        |
-// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |  F11 |  F4  |  F5  |  F6  | ScLk |        |      | Shft | Ctl  | Alt  | Supr |        |
-// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        |  F10 |  F1  |  F2  |  F3  | Brk  |        |      |      |      |      |      |        |
-// `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
-//                           |  App | Spc  | Tab  |  |      |      | Hold |
-//                           `--------------------'  `--------------------'
-//
-// Button (L7)
-//
-// ,-------------------------------------------.        ,-------------------------------------------.
-// |        | Undo | Copy | Cut  | Paste| Redo |        | Redo | Paste| Cut  | Copy | Undo |        |
-// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        | Supr | Alt  | Ctl  | Shft |      |        |      | Shft | Ctl  | Alt  | Supr |        |
-// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |        | Hold | Copy | Cut  | Paste| Redo |        | Redo | Paste| Cut  | Copy | Hold |        |
-// `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
-//                           | MBt  | LBt  |  RBt |  |  RBt | LBt  | MBt  |
-//                           `--------------------'  `--------------------'
-//
-// FIDO / Steno settings (L8)
-//
-// ,-------------------------------------------.        ,-------------------------------------------.
-// |        |      |      |      |      |      |        |      |      |      |      |      |        |
-// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |Esc/Canl|Embedd|Gemini|TxBolt|PloHID|      |        |      |      |      |      |      |        |
-// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
-// |  FIDO  | WPM  | Tape |Strkes|      |      |        |      |      |      |      |      |        |
-// `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
-//                           | Hold | Hold |      |  |      |      |      |
+//                           |      |Numpad|      |  | Space|      | Enter|
 //                           `--------------------'  `--------------------'
 //
 
+//
+// Numpad -- Pressing Alt + Nav at the same time
+//
+// ,-------------------------------------------.        ,-------------------------------------------.
+// |        |      |      |      |      |      |        |      |   7  |   8  |   9  |   *  |  Bksp  |
+// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
+// |        |  GUI |  Alt | Ctrl | Shift|      |        |      |   4  |   5  |   6  |   -  |   +    |
+// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
+// |        |      |      |      |      |      |        |      |   1  |   2  |   3  |   /  | Magic  |
+// `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
+//                           |      |      |      |  | Space|   0  |   .  |
+//                           `--------------------'  `--------------------'
+//
+// * Magic has the same meaning as the symbol layer.
 
-
+//
+// Settings - pressing both Sym and Fn together.
+//
+// ,-------------------------------------------.        ,-------------------------------------------.
+// |  USB L | BLE1 | BLE2 | BLE3 | BLE4 | USB R|        |      |      |Brght+| Sat+ |      |Disconn |
+// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
+// |        |Embedd|Gemini|TxBolt|PloHID|      |        |      |      |Brght-| Sat- |      |        |
+// |--------+------+------+------+------+------|        |------+------+------+------+------+--------|
+// |        | WPM  | Tape |Strkes|      |      |        |      |      |      |      |      | Unpair |
+// `----------------------+--+---+--+---+--+---+--.  ,--+---+--+---+--+---+-------------------------'
+//                           |      |      |      |  |      |      |      |
+//                           `--------------------'  `--------------------'
+//
+// To pair a device to slot 1, hold BLE1 for 2 seconds. Same for BLE2-BLE4.
 
 // This script file is generated by Javelin's GUI Configuration Tool.
 
@@ -1573,6 +1545,9 @@ func tapCapsLock() {
 var vx;
 var vy;
 
+const dxWheel = 1;
+const dyWheel = 1;
+
 var mouseMask; // 0 = up, 1 = down, 2 = left, 3 = right
 
 // Scaled up *10
@@ -1613,6 +1588,34 @@ func mouseLeftReleased() {
 func mouseRightReleased() {
   vx = 0;
   mouseReleased(8);
+}
+
+func mouseWheelUpPressed() {
+  vWheelMouse(-1*dyWheel);
+}
+
+func mouseWheelDownPressed() {
+  vWheelMouse(dyWheel);
+}
+
+func mouseWheelLeftPressed() {
+  hWheelMouse(-1*dxWheel);
+}
+
+func mouseWheelRightPressed() {
+  hWheelMouse(dxWheel);
+}
+
+func mouseWheelUpReleased() {
+}
+
+func mouseWheelDownReleased() {
+}
+
+func mouseWheelLeftReleased() {
+}
+
+func mouseWheelRightReleased() {
 }
 
 func mousePressed(mask) {
@@ -1663,6 +1666,10 @@ func updateMouse() {
 // #prefab Mouse:Down [{"t":"p","d":{"a":{"t":"s","script":"// Mouse\\nDown\nmouseDownPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"// \nmouseDownReleased();"}}}]
 // #prefab Mouse:Left [{"t":"p","d":{"a":{"t":"s","script":"// Mouse\\nLeft\nmouseLeftPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"//\nmouseLeftReleased();"}}}]
 // #prefab Mouse:Right [{"t":"p","d":{"a":{"t":"s","script":"// Mouse\\nRight\nmouseRightPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"// \nmouseRightReleased();"}}}]
+// #prefab MouseWheel:Up [{"t":"p","d":{"a":{"t":"s","script":"// MouseWheel\\nUp\nmouseWheelUpPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"//\nmouseWheelUpReleased();"}}}]
+// #prefab MouseWheel:Down [{"t":"p","d":{"a":{"t":"s","script":"// MouseWheel\\nDown\nmouseWheelDownPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"// \nmouseWheelDownReleased();"}}}]
+// #prefab MouseWheel:Left [{"t":"p","d":{"a":{"t":"s","script":"// MouseWheel\\nLeft\nmouseWheelLeftPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"//\nmouseWheelLeftReleased();"}}}]
+// #prefab MouseWheel:Right [{"t":"p","d":{"a":{"t":"s","script":"// MouseWheel\\nRight\nmouseWheelRightPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"// \nmouseWheelRightReleased();"}}}]
 
 // Layer 04 Script: drawBar
 const BRIGHTNESS_IMAGE = [[
@@ -4102,13 +4109,11 @@ func modTapHandler30(action) {
   }
   if (resolvedLayerIndex == 2) {
     if (action == MODTAP_HANDLER_PRESS_TAP) {
-      pressScanCodeButton(30, 0, 225 /* "⇧" */, 1);
-      pressScanCodeButton(30, 2, 67 /* "F10" */, 0);
+      pressScanCodeButton(30, 0, 73 /* "⎀" */, 0);
       return;
     }
     if (action == MODTAP_HANDLER_RELEASE_TAP) {
-      releaseScanCodeButton(67 /* "F10" */);
-      releaseScanCodeButton(225 /* "⇧" */);
+      releaseScanCodeButton(73 /* "⎀" */);
       return;
     }
     return;
@@ -6578,13 +6583,13 @@ func onPress31() {
 
   if (getTime() - pressTime31 >= 250) tapCount31 = 0;
   if (!isInPressAll()) pressTime31 = getTime();
-  dispatchToLayer([<0, @onPress31_1, @onPress31_2, 0, @onPress31_4, 0, 0, 0, 0, @onPress31_9>]);
+  dispatchToLayer([<0, @onPress31_1, @onPress31_2, @onPress31_3, @onPress31_4, 0, 0, 0, 0, @onPress31_9>]);
 }
 func onRelease31() {
   globalRelease();
 
   handleModTapRelease(@modTapHandler31);
-  dispatchToLayer([<0, 0, 0, 0, @onRelease31_4, @onRelease31_5, @onRelease31_6, @onRelease31_7, 0, 0>]);
+  dispatchToLayer([<0, 0, 0, @onRelease31_3, @onRelease31_4, @onRelease31_5, @onRelease31_6, @onRelease31_7, 0, 0>]);
 }
 
 func onPress31_1() {
@@ -6599,11 +6604,13 @@ func onPress31_2() {
 func onRelease31_2() {
 }
 
-//Placeholder \n Mouse Wheel \n Left
-
 func onPress31_3() {
+  // MouseWheel\nLeft
+  mouseWheelLeftPressed();
 }
 func onRelease31_3() {
+  //
+  mouseWheelLeftReleased();
 }
 
 func onPress31_4() {
@@ -6685,13 +6692,13 @@ func onPress32() {
 
   if (getTime() - pressTime32 >= 250) tapCount32 = 0;
   if (!isInPressAll()) pressTime32 = getTime();
-  dispatchToLayer([<0, @onPress32_1, @onPress32_2, 0, @onPress32_4, 0, 0, 0, 0, @onPress32_9>]);
+  dispatchToLayer([<0, @onPress32_1, @onPress32_2, @onPress32_3, @onPress32_4, 0, 0, 0, 0, @onPress32_9>]);
 }
 func onRelease32() {
   globalRelease();
 
   handleModTapRelease(@modTapHandler32);
-  dispatchToLayer([<0, 0, 0, 0, @onRelease32_4, @onRelease32_5, @onRelease32_6, @onRelease32_7, 0, 0>]);
+  dispatchToLayer([<0, 0, 0, @onRelease32_3, @onRelease32_4, @onRelease32_5, @onRelease32_6, @onRelease32_7, 0, 0>]);
 }
 
 func onPress32_1() {
@@ -6706,11 +6713,13 @@ func onPress32_2() {
 func onRelease32_2() {
 }
 
-//Placeholder \n Mouse Wheel \n Down
-
 func onPress32_3() {
+  // MouseWheel\nDown
+  mouseWheelDownPressed();
 }
 func onRelease32_3() {
+  //
+  mouseWheelDownReleased();
 }
 
 func onPress32_4() {
@@ -6789,13 +6798,13 @@ func onRelease32_9() {
 func onPress33() {
   globalPress(33);
 
-  dispatchToLayer([<0, @onPress33_1, @onPress33_2, 0, @onPress33_4, 0, 0, 0, 0, @onPress33_9>]);
+  dispatchToLayer([<0, @onPress33_1, @onPress33_2, @onPress33_3, @onPress33_4, 0, 0, 0, 0, @onPress33_9>]);
 }
 func onRelease33() {
   globalRelease();
 
   handleModTapRelease(@modTapHandler33);
-  dispatchToLayer([<0, 0, 0, 0, @onRelease33_4, 0, 0, 0, 0, 0>]);
+  dispatchToLayer([<0, 0, 0, @onRelease33_3, @onRelease33_4, 0, 0, 0, 0, 0>]);
 }
 
 func onPress33_1() {
@@ -6810,10 +6819,13 @@ func onPress33_2() {
 func onRelease33_2() {
 }
 
-//Placeholder \n Mouse Wheel \n Up
 func onPress33_3() {
+  // MouseWheel\nUp
+  mouseWheelUpPressed();
 }
 func onRelease33_3() {
+  //
+  mouseWheelUpReleased();
 }
 
 func onPress33_4() {
@@ -6844,13 +6856,13 @@ func onRelease33_9() {
 func onPress34() {
   globalPress(34);
 
-  dispatchToLayer([<0, @onPress34_1, @onPress34_2, 0, @onPress34_4, 0, 0, 0, 0, 0>]);
+  dispatchToLayer([<0, @onPress34_1, @onPress34_2, @onPress34_3, @onPress34_4, 0, 0, 0, 0, 0>]);
 }
 func onRelease34() {
   globalRelease();
 
   handleModTapRelease(@modTapHandler34);
-  dispatchToLayer([<0, @onRelease34_1, 0, 0, @onRelease34_4, 0, 0, 0, 0, @onRelease34_9>]);
+  dispatchToLayer([<0, @onRelease34_1, 0, @onRelease34_3, @onRelease34_4, 0, 0, 0, 0, @onRelease34_9>]);
 }
 
 func onPress34_1() {
@@ -6868,11 +6880,13 @@ func onPress34_2() {
 func onRelease34_2() {
 }
 
-//Placeholder \n Mouse Wheel \n Right
-
 func onPress34_3() {
+  // MouseWheel\nRight
+  mouseWheelRightPressed();
 }
 func onRelease34_3() {
+  //
+  mouseWheelRightReleased();
 }
 
 func onPress34_4() {
