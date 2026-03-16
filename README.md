@@ -61,9 +61,9 @@ Here are the combined layers.
 
 ![alt text](<docs/images/Screenshot 2026-03-15 165120.png>)
 
-[alt text](<docs/images/Screenshot 2026-03-16 174439.png>)
+![alt text](<docs/images/Screenshot 2026-03-16 174439.png>)
 
-![alt text](<docs/images/Screenshot 2026-03-15 165154.png>)
+![alt text](<docs/images/Screenshot 2026-03-16 193818.png>)
 
 ![alt text](<docs/images/Screenshot 2026-03-15 165209.png>)
 
