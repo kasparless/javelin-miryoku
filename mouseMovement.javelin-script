@@ -1,0 +1,173 @@
+// Copy-paste the contents of this script into a layer's User Scripts
+// After that, clicking on a key will show mouse movement options.
+var vx;
+var vy;
+
+var dxWheel;
+var dyWheel;
+
+var mouseMask; // 0 = up, 1 = down, 2 = left, 3 = right
+var mouseWheelMask; // 0 = up, 1 = down, 2 = left, 3 = right
+
+// Scaled up *10
+const MOUSE_MAX_VELOCITY = 2000; // 200
+const MOUSE_ACCELERATION = 25;   // 2.5 units/tick
+const DX_WHEEL = 1;
+const DY_WHEEL = 1;
+
+func mouseUpPressed() {
+  mousePressed(1);
+}
+
+func mouseDownPressed() {
+  mousePressed(2);
+}
+
+func mouseLeftPressed() {
+  mousePressed(4);
+}
+
+func mouseRightPressed() {
+  mousePressed(8);
+}
+
+func mouseUpReleased() {
+  vy = 0;
+  mouseReleased(1);
+}
+
+func mouseDownReleased() {
+  vy = 0;
+  mouseReleased(2);
+}
+
+func mouseLeftReleased() {
+  vx = 0;
+  mouseReleased(4);
+}
+
+func mouseRightReleased() {
+  vx = 0;
+  mouseReleased(8);
+}
+
+func mouseWheelUpPressed() {
+  mouseWheelPressed(1);
+}
+
+func mouseWheelDownPressed() {
+  mouseWheelPressed(2);
+}
+
+func mouseWheelLeftPressed() {
+  mouseWheelPressed(4);
+}
+
+func mouseWheelRightPressed() {
+  mouseWheelPressed(8);
+}
+
+func mouseWheelUpReleased() {
+  mouseWheelReleased(1);
+}
+
+func mouseWheelDownReleased() {
+  mouseWheelReleased(2);
+}
+
+func mouseWheelLeftReleased() {
+  mouseWheelReleased(4);
+}
+
+func mouseWheelRightReleased() {
+  mouseWheelReleased(8);
+}
+
+func mousePressed(mask) {
+  mouseMask = mouseMask | mask;
+  startTimer(@updateMouse, 25, 1, @updateMouse);
+  updateMouse();
+}
+
+func mouseReleased(mask) {
+  mouseMask = mouseMask & ~mask;
+  if (mouseMask == 0) {
+    stopTimer(@updateMouse);
+  }
+}
+
+func mouseWheelPressed(mask) {
+  mouseWheelMask = mouseWheelMask | mask;
+  startTimer(@updateMouseWheel, 25, 1, @updateMouseWheel);
+  updateMouseWheel();
+}
+
+func mouseWheelReleased(mask) {
+  mouseWheelMask = mouseWheelMask & ~mask;
+  if (mouseWheelMask == 0) {
+    stopTimer(@updateMouseWheel);
+  }
+}
+
+func mouseReleaseAll() {
+  mouseMask = 0;
+  stopTimer(@updateMouse);
+}
+
+func updateMouse() {
+  var upDown = mouseMask & 3;
+  if (upDown == 0 || upDown == 3) {
+    vy = 0;
+  } else if(upDown == 1) {
+    vy = vy - MOUSE_ACCELERATION;
+    if (vy < -MOUSE_MAX_VELOCITY) vy = -MOUSE_MAX_VELOCITY;
+  } else {
+    vy = vy + MOUSE_ACCELERATION;
+    if (vy > MOUSE_MAX_VELOCITY) vy = MOUSE_MAX_VELOCITY;
+  }
+
+  var leftRight = mouseMask >> 2;
+  if (leftRight == 0 || leftRight == 3) {
+    vx = 0;
+  } else if(leftRight == 1) {
+    vx = vx - MOUSE_ACCELERATION;
+    if (vx < -MOUSE_MAX_VELOCITY) vx = -MOUSE_MAX_VELOCITY;
+  } else {
+    vx = vx + MOUSE_ACCELERATION;
+    if (vx > MOUSE_MAX_VELOCITY) vx = MOUSE_MAX_VELOCITY;
+  }
+
+  moveMouse(vx/10, vy/10);
+}
+
+func updateMouseWheel() {
+  var upDown = mouseWheelMask & 3;
+  if (upDown == 0 || upDown == 3) {
+    dyWheel = 0;
+  } else if(upDown == 1) {
+    dyWheel = DY_WHEEL;
+  } else {
+    dyWheel = -1*DY_WHEEL;
+  }
+
+  var leftRight = mouseWheelMask >> 2;
+  if (leftRight == 0 || leftRight == 3) {
+    dxWheel = 0;
+  } else if(leftRight == 1) {
+    dxWheel = -1*DX_WHEEL;
+  } else {
+    dxWheel = DX_WHEEL;
+  }
+
+  vWheelMouse(dyWheel);
+  hWheelMouse(dxWheel);
+}
+
+// #prefab Mouse:Up [{"t":"p","d":{"a":{"t":"s","script":"// Mouse\\nUp\nmouseUpPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"//\nmouseUpReleased();"}}}]
+// #prefab Mouse:Down [{"t":"p","d":{"a":{"t":"s","script":"// Mouse\\nDown\nmouseDownPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"// \nmouseDownReleased();"}}}]
+// #prefab Mouse:Left [{"t":"p","d":{"a":{"t":"s","script":"// Mouse\\nLeft\nmouseLeftPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"//\nmouseLeftReleased();"}}}]
+// #prefab Mouse:Right [{"t":"p","d":{"a":{"t":"s","script":"// Mouse\\nRight\nmouseRightPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"// \nmouseRightReleased();"}}}]
+// #prefab MouseWheel:Up [{"t":"p","d":{"a":{"t":"s","script":"// MouseWheel\\nUp\nmouseWheelUpPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"//\nmouseWheelUpReleased();"}}}]
+// #prefab MouseWheel:Down [{"t":"p","d":{"a":{"t":"s","script":"// MouseWheel\\nDown\nmouseWheelDownPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"// \nmouseWheelDownReleased();"}}}]
+// #prefab MouseWheel:Left [{"t":"p","d":{"a":{"t":"s","script":"// MouseWheel\\nLeft\nmouseWheelLeftPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"//\nmouseWheelLeftReleased();"}}}]
+// #prefab MouseWheel:Right [{"t":"p","d":{"a":{"t":"s","script":"// MouseWheel\\nRight\nmouseWheelRightPressed();"}}},{"t":"r","d":{"a":{"t":"s","script":"// \nmouseWheelRightReleased();"}}}]
