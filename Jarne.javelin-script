@@ -1539,7 +1539,7 @@ func tapCapsLock() {
   });
 }
 
-// Layer 03 Script: mousemov
+// Layer 03 Script: mouseMovement
 // Copy-paste the contents of this script into a layer's User Scripts
 // After that, clicking on a key will show mouse movement options.
 var vx;
@@ -1594,22 +1594,18 @@ func mouseRightReleased() {
 }
 
 func mouseWheelUpPressed() {
-  // vWheelMouse(-1*dyWheel);
   mouseWheelPressed(1);
 }
 
 func mouseWheelDownPressed() {
-  // vWheelMouse(dyWheel);
   mouseWheelPressed(2);
 }
 
 func mouseWheelLeftPressed() {
-  // hWheelMouse(-1*dxWheel);
   mouseWheelPressed(4);
 }
 
 func mouseWheelRightPressed() {
-  // hWheelMouse(dxWheel);
   mouseWheelPressed(8);
 }
 
@@ -1691,9 +1687,9 @@ func updateMouseWheel() {
   if (upDown == 0 || upDown == 3) {
     dyWheel = 0;
   } else if(upDown == 1) {
-    dyWheel = -1*DY_WHEEL;
-  } else {
     dyWheel = DY_WHEEL;
+  } else {
+    dyWheel = -1*DY_WHEEL;
   }
 
   var leftRight = mouseWheelMask >> 2;
