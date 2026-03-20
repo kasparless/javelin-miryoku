@@ -3407,9 +3407,20 @@ func modTapHandler18(action) {
     }
     return;
   }
+  if (resolvedLayerIndex == 5) {
+    if (action == MODTAP_HANDLER_PRESS_TAP) {
+      pressScanCodeButton(18, 0, 42 /* "⌫" */, 0);
+      return;
+    }
+    if (action == MODTAP_HANDLER_RELEASE_TAP) {
+      releaseScanCodeButton(42 /* "⌫" */);
+      return;
+    }
+    return;
+  }
 }
 
-const modTapLayerActivations18 = [[00 01 01 00 00 00 00 00 00 00]];
+const modTapLayerActivations18 = [[00 01 01 00 00 01 00 00 00 00]];
 
 func modTapHandler19(action) {
   var resolvedLayerIndex = resolveLayerIndex();
@@ -5817,7 +5828,7 @@ func onRelease17_7() {
 func onPress18() {
   globalPress(18);
 
-  dispatchToLayer([<@onPress18_0, @onPress18_1, @onPress18_2, 0, 0, 0, 0, 0, 0, 0>]);
+  dispatchToLayer([<@onPress18_0, @onPress18_1, @onPress18_2, 0, 0, @onPress18_5, 0, 0, 0, 0>]);
 }
 func onRelease18() {
   globalRelease();
@@ -5843,6 +5854,12 @@ func onPress18_2() {
   handleModTapPress(@modTapHandler18, 1, modTapLayerActivations18, 200);
 }
 func onRelease18_2() {
+}
+
+func onPress18_5() {
+  handleModTapPress(@modTapHandler18, 1, modTapLayerActivations18, 200);
+}
+func onRelease18_5() {
 }
 
 func onPress19() {
@@ -6910,7 +6927,7 @@ func onRelease34() {
 
 func onPress34_1() {
   modTapLayerPossibility[9] = 1;
-  handleModTapPress(@modTapHandler34, 0, modTapLayerActivations34, 200);
+  handleModTapPress(@modTapHandler34, 2, modTapLayerActivations34, 200);
 }
 func onRelease34_1() {
   modTapLayerPossibility[1] = 0;
